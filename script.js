@@ -33,6 +33,7 @@ function insertNewRecord(data) {
   cell4 = newRow.insertCell(2);
   sum.value = parseInt(sum.value) + parseInt(data.perPrice);
   cell4.innerHTML = `<button onClick="onEdit(this)" class="btn btn-primary btn-sm" >Edit</button> <button onClick="onDelete(this)" class="btn btn-primary btn-sm" >Delete</button>`;
+  document.getElementById("product").focus();
 }
 var temp = 0;
 //Edit the data
@@ -46,6 +47,7 @@ function updateRecord(formData) {
   selectedRow.cells[0].innerHTML = formData.product;
   selectedRow.cells[1].innerHTML = formData.perPrice;
   sum.value = parseInt(sum.value) + parseInt(formData.perPrice) - temp;
+  document.getElementById("product").focus();
 }
 
 //Delete the data
@@ -55,6 +57,7 @@ function onDelete(td) {
     document.getElementById("storeList").deleteRow(row.rowIndex);
     sum.value = parseInt(sum.value) - parseInt(row.cells[1].innerText);
     resetForm();
+    document.getElementById("product").focus();
   }
 }
 
