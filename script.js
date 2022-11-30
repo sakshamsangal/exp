@@ -1,5 +1,8 @@
 var selectedRow = null;
 var my_sum = document.getElementById("sum");
+var y = document.getElementById("product");
+y.click()
+
 
 function onFormSubmit(e) {
   event.preventDefault();
@@ -15,7 +18,7 @@ function onFormSubmit(e) {
 //Retrieve the data
 function readFormData() {
   var formData = {};
-  formData["product"] = document.getElementById("product").value;
+  formData["product"] = y.value;
   formData["perPrice"] = document.getElementById("perPrice").value;
   return formData;
 }
@@ -33,13 +36,13 @@ function insertNewRecord(data) {
   cell4 = newRow.insertCell(2);
   sum.value = parseInt(sum.value) + parseInt(data.perPrice);
   cell4.innerHTML = `<button onClick="onEdit(this)" class="btn btn-primary btn-sm" >Edit</button> <button onClick="onDelete(this)" class="btn btn-primary btn-sm" >Delete</button>`;
-  document.getElementById("product").focus();
+  y.focus();
 }
 var temp = 0;
 //Edit the data
 function onEdit(td) {
   selectedRow = td.parentElement.parentElement;
-  document.getElementById("product").value = selectedRow.cells[0].innerHTML;
+  y.value = selectedRow.cells[0].innerHTML;
   document.getElementById("perPrice").value = selectedRow.cells[1].innerHTML;
   temp = parseInt(selectedRow.cells[1].innerText);
 }
@@ -47,7 +50,7 @@ function updateRecord(formData) {
   selectedRow.cells[0].innerHTML = formData.product;
   selectedRow.cells[1].innerHTML = formData.perPrice;
   sum.value = parseInt(sum.value) + parseInt(formData.perPrice) - temp;
-  document.getElementById("product").focus();
+  y.focus();
 }
 
 //Delete the data
@@ -57,13 +60,13 @@ function onDelete(td) {
     document.getElementById("storeList").deleteRow(row.rowIndex);
     sum.value = parseInt(sum.value) - parseInt(row.cells[1].innerText);
     resetForm();
-    document.getElementById("product").focus();
+    y.focus();
   }
 }
 
 //Reset the data
 function resetForm() {
-  document.getElementById("product").value = "";
+  y.value = "";
   document.getElementById("perPrice").value = "";
   selectedRow = null;
 }
