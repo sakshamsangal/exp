@@ -1,7 +1,6 @@
 var selectedRow = null;
 var my_sum = document.getElementById("sum");
 var y = document.getElementById("product");
-y.click()
 
 
 function onFormSubmit(e) {
@@ -45,6 +44,7 @@ function onEdit(td) {
   y.value = selectedRow.cells[0].innerHTML;
   document.getElementById("perPrice").value = selectedRow.cells[1].innerHTML;
   temp = parseInt(selectedRow.cells[1].innerText);
+  y.focus();
 }
 function updateRecord(formData) {
   selectedRow.cells[0].innerHTML = formData.product;
